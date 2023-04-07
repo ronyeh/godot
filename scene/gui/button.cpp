@@ -565,6 +565,16 @@ HorizontalAlignment Button::get_icon_alignment() const {
 	return icon_alignment;
 }
 
+void Button::set_margin_left(float p_value) {
+	print_line("set_margin_left: " + rtos(p_value));
+	_internal_margin[SIDE_LEFT] = p_value;
+}
+
+void Button::set_margin_right(float p_value) {
+	print_line("set_margin_right: " + rtos(p_value));
+	_internal_margin[SIDE_RIGHT] = p_value;
+}
+
 void Button::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_text", "text"), &Button::set_text);
 	ClassDB::bind_method(D_METHOD("get_text"), &Button::get_text);

@@ -195,6 +195,15 @@ void AcceptDialog::set_ok_button_text(String p_ok_button_text) {
 	}
 }
 
+void AcceptDialog::set_ok_button_margin() {
+	ok_button->set_margin_left(20);
+	ok_button->set_margin_right(20);
+	child_controls_changed();
+	if (is_visible()) {
+		_update_child_rects();
+	}
+}
+
 String AcceptDialog::get_ok_button_text() const {
 	return ok_button->get_text();
 }

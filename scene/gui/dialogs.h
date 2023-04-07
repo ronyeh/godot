@@ -108,6 +108,8 @@ public:
 	void set_ok_button_text(String p_ok_button_text);
 	String get_ok_button_text() const;
 
+	void set_ok_button_margin();
+
 	AcceptDialog();
 	~AcceptDialog();
 };

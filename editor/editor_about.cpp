@@ -282,6 +282,8 @@ EditorAbout::EditorAbout() {
 	_tpl_tree->connect("item_selected", callable_mp(this, &EditorAbout::_license_tree_selected));
 	tpl_ti_all->select(0);
 	_tpl_text->set_text(tpl_ti_all->get_metadata(0));
+
+	set_ok_button_margin();
 }
 
 EditorAbout::~EditorAbout() {}

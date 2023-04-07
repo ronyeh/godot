@@ -137,6 +137,9 @@ public:
 	void set_icon_alignment(HorizontalAlignment p_alignment);
 	HorizontalAlignment get_icon_alignment() const;
 
+	void set_margin_left(float p_value);
+	void set_margin_right(float p_value);
+
 	Button(const String &p_text = String());
 	~Button();
 };
