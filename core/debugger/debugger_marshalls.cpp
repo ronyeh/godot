@@ -111,9 +111,12 @@ Array DebuggerMarshalls::OutputError::serialize() {
 	arr.push_back(error_descr);
 	arr.push_back(warning);
 	unsigned int size = callstack.size();
+    printf("RONYEH CALLSTACK SIZE_1 %d", size);
+    // RONYEH
 	const ScriptLanguage::StackInfo *r = callstack.ptr();
 	arr.push_back(size * 3);
 	for (int i = 0; i < callstack.size(); i++) {
+    printf("RONYEH CALLSTACK SIZE_2 %d", callstack.size());
 		arr.push_back(r[i].file);
 		arr.push_back(r[i].func);
 		arr.push_back(r[i].line);

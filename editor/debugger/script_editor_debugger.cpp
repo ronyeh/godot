@@ -661,6 +661,16 @@ void ScriptEditorDebugger::_parse_message(const String &p_msg, uint64_t p_thread
 			stack_trace->set_text(1, frame_txt);
 		}
 
+        // RONYEH
+        // get the array of the serialized error
+        Array serialized_error = oe.serialize();
+        // log the array to standard out
+        print_line("RONYEH serialized_error BEGIN");
+        print_line(serialized_error);
+        print_line("RONYEH serialized_error END");
+        
+        
+
 		error->set_tooltip_text(0, tooltip);
 		error->set_tooltip_text(1, tooltip);
 

@@ -2324,6 +2324,7 @@ void ScriptTextEditor::_enable_code_editor() {
 }
 
 ScriptTextEditor::ScriptTextEditor() {
+	print_line("ScriptTextEditor::ScriptTextEditor");
 	code_editor = memnew(CodeTextEditor);
 	code_editor->add_theme_constant_override("separation", 2);
 	code_editor->set_anchors_and_offsets_preset(Control::PRESET_FULL_RECT);
@@ -2411,6 +2412,7 @@ ScriptTextEditor::ScriptTextEditor() {
 }
 
 ScriptTextEditor::~ScriptTextEditor() {
+	print_line("ScriptTextEditor::~ScriptTextEditor");
 	highlighters.clear();
 
 	if (!editor_enabled) {

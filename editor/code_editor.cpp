@@ -41,6 +41,7 @@
 #include "scene/resources/font.h"
 
 void GotoLineDialog::popup_find_line(CodeEdit *p_edit) {
+	print_line("popup_find_line");
 	text_editor = p_edit;
 
 	// Add 1 because text_editor->get_caret_line() starts from 0, but the editor user interface starts from 1.
@@ -51,6 +52,7 @@ void GotoLineDialog::popup_find_line(CodeEdit *p_edit) {
 }
 
 int GotoLineDialog::get_line() const {
+	print_line("get_line");
 	return line->get_text().to_int();
 }
 
@@ -867,6 +869,7 @@ void CodeTextEditor::_zoom_out() {
 }
 
 void CodeTextEditor::_zoom_changed() {
+	print_line("CodeTextEditor::zoom changed " + itos(font_resize_val));
 	if (font_resize_timer->get_time_left() == 0) {
 		font_resize_timer->start();
 	}
@@ -914,6 +917,7 @@ void CodeTextEditor::_line_col_changed() {
 
 void CodeTextEditor::_text_changed() {
 	if (code_complete_enabled && text_editor->is_insert_text_operation()) {
+		print_line("CodeTextEditor::text changed");
 		code_complete_timer_line = text_editor->get_caret_line();
 		code_complete_timer->start();
 	}
@@ -1198,6 +1202,7 @@ void CodeTextEditor::convert_case(CaseStyle p_case) {
 }
 
 void CodeTextEditor::move_lines_up() {
+	print_line("CodeTextEditor::move_lines_up");
 	text_editor->begin_complex_operation();
 
 	Vector<int> caret_edit_order = text_editor->get_caret_index_edit_order();
@@ -1293,6 +1298,7 @@ void CodeTextEditor::move_lines_up() {
 }
 
 void CodeTextEditor::move_lines_down() {
+	print_line("CodeTextEditor::move_lines_down");
 	text_editor->begin_complex_operation();
 
 	Vector<int> caret_edit_order = text_editor->get_caret_index_edit_order();
@@ -1390,6 +1396,7 @@ void CodeTextEditor::move_lines_down() {
 }
 
 void CodeTextEditor::delete_lines() {
+	print_line("CodeTextEditor::delete_lines");
 	text_editor->begin_complex_operation();
 
 	Vector<int> caret_edit_order = text_editor->get_caret_index_edit_order();
@@ -1432,6 +1439,7 @@ void CodeTextEditor::delete_lines() {
 }
 
 void CodeTextEditor::duplicate_selection() {
+	print_line("duplicate_selection");
 	text_editor->begin_complex_operation();
 
 	Vector<int> caret_edit_order = text_editor->get_caret_index_edit_order();
@@ -1479,6 +1487,7 @@ void CodeTextEditor::duplicate_selection() {
 }
 
 void CodeTextEditor::toggle_inline_comment(const String &delimiter) {
+	print_line("toggle_inline_comment");
 	text_editor->begin_complex_operation();
 
 	Vector<int> caret_edit_order = text_editor->get_caret_index_edit_order();
@@ -1921,6 +1930,7 @@ void CodeTextEditor::toggle_bookmark() {
 }
 
 void CodeTextEditor::goto_next_bookmark() {
+	print_line("goto_next_bookmark");
 	PackedInt32Array bmarks = text_editor->get_bookmarked_lines();
 	if (bmarks.size() <= 0) {
 		return;
@@ -1937,6 +1947,7 @@ void CodeTextEditor::goto_next_bookmark() {
 }
 
 void CodeTextEditor::goto_prev_bookmark() {
+	print_line("goto_prev_bookmark");
 	PackedInt32Array bmarks = text_editor->get_bookmarked_lines();
 	if (bmarks.size() <= 0) {
 		return;
@@ -1953,10 +1964,12 @@ void CodeTextEditor::goto_prev_bookmark() {
 }
 
 void CodeTextEditor::remove_all_bookmarks() {
+	print_line("remove_all_bookmarks");
 	text_editor->clear_bookmarked_lines();
 }
 
 void CodeTextEditor::_bind_methods() {
+	print_line("CodeTextEditor::_bind_methods");
 	ADD_SIGNAL(MethodInfo("validate_script"));
 	ADD_SIGNAL(MethodInfo("load_theme_settings"));
 	ADD_SIGNAL(MethodInfo("show_errors_panel"));
@@ -1964,15 +1977,18 @@ void CodeTextEditor::_bind_methods() {
 }
 
 void CodeTextEditor::set_code_complete_func(CodeTextEditorCodeCompleteFunc p_code_complete_func, void *p_ud) {
+	print_line("CodeTextEditor::set_code_complete_func");
 	code_complete_func = p_code_complete_func;
 	code_complete_ud = p_ud;
 }
 
 void CodeTextEditor::show_toggle_scripts_button() {
+	print_line("CodeTextEditor::show_toggle_scripts_button");
 	toggle_scripts_button->show();
 }
 
 void CodeTextEditor::update_toggle_scripts_button() {
+	print_line("CodeTextEditor::update_toggle_scripts_button");
 	if (is_layout_rtl()) {
 		toggle_scripts_button->set_icon(get_editor_theme_icon(ScriptEditor::get_singleton()->is_scripts_panel_toggled() ? SNAME("Forward") : SNAME("Back")));
 	} else {
@@ -1982,6 +1998,7 @@ void CodeTextEditor::update_toggle_scripts_button() {
 }
 
 CodeTextEditor::CodeTextEditor() {
+	print_line("CodeTextEditor::CodeTextEditor");
 	code_complete_func = nullptr;
 	ED_SHORTCUT("script_editor/zoom_in", TTR("Zoom In"), KeyModifierMask::CMD_OR_CTRL | Key::EQUAL);
 	ED_SHORTCUT("script_editor/zoom_out", TTR("Zoom Out"), KeyModifierMask::CMD_OR_CTRL | Key::MINUS);
