@@ -44,6 +44,9 @@
 #include "servers/audio/audio_driver_dummy.h"
 #include "servers/audio/effects/audio_effect_compressor.h"
 
+#include "core/math/math_funcs.h"
+
+
 #include <cstring>
 
 #ifdef TOOLS_ENABLED
@@ -62,6 +65,11 @@ void AudioDriver::set_singleton() {
 }
 
 void AudioDriver::audio_server_process(int p_frames, int32_t *p_buffer, bool p_update_mix_time) {
+
+	if (Math::randf() < 0.1) {
+		print_verbose("AudioServer::audio_server_process: p_frames=" + itos(p_frames) + " p_update_mix_time=" + itos(p_update_mix_time));
+	}
+	
 	if (p_update_mix_time) {
 		update_mix_time(p_frames);
 	}
@@ -305,6 +313,7 @@ void AudioServer::_driver_process(int p_frames, int32_t *p_buffer) {
 }
 
 void AudioServer::_mix_step() {
+	// AudioServer::_mix_step() is called all the time!
 	bool solo_mode = false;
 
 	for (int i = 0; i < buses.size(); i++) {

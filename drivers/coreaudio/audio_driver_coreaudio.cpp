@@ -29,6 +29,7 @@
 /**************************************************************************/
 
 #include "audio_driver_coreaudio.h"
+#include "core/_test_.h"
 
 #ifdef COREAUDIO_ENABLED
 
@@ -69,6 +70,8 @@ OSStatus AudioDriverCoreAudio::output_device_address_cb(AudioObjectID inObjectID
 #endif
 
 Error AudioDriverCoreAudio::init() {
+	print_verbose("AudioDriverCoreAudio::init");
+
 	AudioComponentDescription desc;
 	memset(&desc, 0, sizeof(desc));
 	desc.componentType = kAudioUnitType_Output;

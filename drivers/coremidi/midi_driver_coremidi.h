@@ -31,6 +31,8 @@
 #ifndef MIDI_DRIVER_COREMIDI_H
 #define MIDI_DRIVER_COREMIDI_H
 
+#include "core/_test_.h"
+
 #ifdef COREMIDI_ENABLED
 
 #include "core/os/midi_driver.h"
