@@ -1,0 +1,16 @@
+I am trying to add a new Audio Engine as a C++ module.
+
+Files included in this branch (in addition to _RONYEH_.txt):
+
+modules/audiox/SCsub
+modules/audiox/audiox.cpp
+modules/audiox/audiox.h
+modules/audiox/config.py
+modules/audiox/register_types.cpp
+modules/audiox/register_types.h
+modules/summator/SCsub
+modules/summator/config.py
+modules/summator/register_types.cpp
+modules/summator/register_types.h
+modules/summator/summator.cpp
+modules/summator/summator.h
